@@ -90,6 +90,7 @@ architecture Behavioral of PCS2 is
 		Rs1 : IN std_logic_vector(4 downto 0);
 		Rs2 : IN std_logic_vector(4 downto 0);
 		Rd : IN std_logic_vector(4 downto 0);
+		Reset : IN std_logic;
 		DwR : IN std_logic_vector(31 downto 0);          
 		Crs1 : OUT std_logic_vector(31 downto 0);
 		Crs2 : OUT std_logic_vector(31 downto 0)
@@ -140,6 +141,7 @@ begin
 		Rs1 => Div_Instruc( 18 downto 14) ,
 		Rs2 => Div_Instruc( 4 downto 0) ,
 		Rd => Div_Instruc( 29 downto 25),
+		Reset => Reset,
 		DwR => ResultAlu,
 		Crs1 => CRS1_ALU ,
 		Crs2 => CRS2_MUX
