@@ -15,9 +15,11 @@ end RF;
 architecture Behavioral of RF is
 	type ram is array (0 to 39) of std_logic_vector (31 downto 0);
 	signal Registers : ram :=(others => x"00000000");
+	
 begin
 	process(Rs1,Rs2,Rd,DwR,Registers)
 	begin
+	Registers (0) <= x"00000000";
 	Crs1 <= Registers(conv_integer(Rs1));
 	Crs2 <= Registers(conv_integer(Rs2));
 	if(Rd /= "00000")then
