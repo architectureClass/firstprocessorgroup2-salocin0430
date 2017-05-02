@@ -17,7 +17,7 @@ process(Op3,Op)
 	begin
 	if(Op ="10") then
 			case Op3 is
-			when "000000" => 				-- Suma
+			when "000000" => 				-- ADD
 			Aluop <= "000001";     
 			
 			when "000101" => 				-- ANDN
@@ -85,6 +85,12 @@ process(Op3,Op)
 
 			when "010011" => 				-- XORCC
 			Aluop <= "010111"; 
+
+			when "111100" => 				-- SAVE  = ADD
+			Aluop <= "000001";
+
+			when "111101" => 				-- RESTORE = ADD
+			Aluop <= "000001";				
 			
 			when others =>
 			Aluop <= "000000";
