@@ -4,10 +4,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity RF is
-    Port ( Rs1 : in  STD_LOGIC_VECTOR (4 downto 0);
-           Rs2 : in  STD_LOGIC_VECTOR (4 downto 0);
-           Rd : in  STD_LOGIC_VECTOR (4 downto 0);
-			  Reset : in  STD_LOGIC;
+    Port ( Rs1 : in  STD_LOGIC_VECTOR (5 downto 0);
+           Rs2 : in  STD_LOGIC_VECTOR (5 downto 0);
+           Rd : in  STD_LOGIC_VECTOR (5 downto 0);
            DwR : in  STD_LOGIC_VECTOR (31 downto 0);
            Crs1 : out  STD_LOGIC_VECTOR (31 downto 0);
            Crs2 : out  STD_LOGIC_VECTOR (31 downto 0));
@@ -21,19 +20,11 @@ begin
 	process(Rs1,Rs2,Rd,DwR,Registers)
 	begin
 	Registers (0) <= x"00000000";
-	
-	if (Reset = '1') then 
-			Registers <=(others => x"00000000");
-			Crs1 <= (others => '0');
-			Crs2 <= (others => '0');
-
-	else		
-			Crs1 <= Registers(conv_integer(Rs1));
-			Crs2 <= Registers(conv_integer(Rs2));
-			if(Rd /= "00000")then
-				Registers(conv_integer(Rd)) <= DwR;
-			end if;
-	end if;		
+	Crs1 <= Registers(conv_integer(Rs1));
+	Crs2 <= Registers(conv_integer(Rs2));
+	if(Rd /= "00000")then
+		Registers(conv_integer(Rd)) <= DwR;
+	end if;
 	end process;
 
 end Behavioral;
